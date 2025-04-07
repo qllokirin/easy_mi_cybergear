@@ -1,1 +1,1 @@
-from easy_mi_cybergear import Cybergear
+from .easy_mi_cybergear import Cybergear

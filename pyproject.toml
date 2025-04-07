@@ -9,7 +9,6 @@ keywords = ["cybergear", "小米cybergear微电机", "小米微电机", "python"
 [tool.poetry.dependencies]
 python = "^3.9"
 pyserial = "^3.5"
-serial = "^0.0.97"
 
 [build-system]
 requires = ["poetry-core"]
