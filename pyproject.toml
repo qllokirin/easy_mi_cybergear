@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "easy_mi_cybergear"
+version = "1.0.0"
+description = "使用python通过USB-CAN模块轻松控制小米cybergear微电机"
+authors = ["qllokirin"]
+readme = "README.md"
+keywords = ["cybergear", "小米cybergear微电机", "小米微电机", "python", "USB-CAN"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyserial = "^3.5"
+serial = "^0.0.97"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
