@@ -1,8 +1,8 @@
 import time
 import serial
 from serial.serialutil import SerialException
-from utils import send_command, MotionType, trans_to_4bit_float
-from can_id_and_communication_type import analyze_can_id_and_communication_type, generate_can_id_and_communication_type, analyze_raw_data_0
+from .utils import send_command, MotionType, trans_to_4bit_float
+from .can_id_and_communication_type import analyze_can_id_and_communication_type, generate_can_id_and_communication_type, analyze_raw_data_0
 class Cybergear():
     def __init__(self, baud_rate=921600, port="COM10", timeout=1):
         self.current_motion_type = MotionType.MOTION
