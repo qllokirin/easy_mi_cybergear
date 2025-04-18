@@ -1,3 +1,7 @@
+import logging
+from .log import setup_logging
+setup_logging()
+
 import struct
 def trans_to_4bit_float(float_num: float) -> str:
     '''
@@ -8,11 +12,6 @@ def trans_to_4bit_float(float_num: float) -> str:
     byte_data = struct.pack('<f', float_num)
     return byte_data.hex(' ')
 
-if __name__ == "__main__":
-    num = 2
-    bytes_data = trans_to_4bit_float(num)
-    print(bytes_data)
-
 import serial
 from serial.serialutil import SerialException
 
@@ -20,7 +19,7 @@ def send_command(ser, hex_data):
     try:
         ser.write(bytes.fromhex(hex_data))
     except SerialException as e:
-        print(f"发送错误: {e}")
+        logging.error(f"发送错误: {e}")
         ser.close()
         ser.open()
 
@@ -35,3 +34,10 @@ class MotionType(Enum):
     SPEED = 2
     # 位置模式：给定电机指定的位置，电机将运行到该指定的位置
     POSITION = 3
+
+
+
+if __name__ == "__main__":
+    num = 2
+    bytes_data = trans_to_4bit_float(num)
+    print(bytes_data)
