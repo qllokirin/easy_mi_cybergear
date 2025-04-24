@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easy_mi_cybergear"
-version = "1.0.5"
+version = "1.0.6"
 description = "使用python通过USB-CAN模块轻松控制小米cybergear微电机"
 authors = ["qllokirin"]
 readme = "README.md"
