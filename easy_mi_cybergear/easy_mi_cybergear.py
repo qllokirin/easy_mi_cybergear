@@ -2,6 +2,7 @@ import time
 import serial
 import serial.tools.list_ports
 import logging
+import platform
 from serial.serialutil import SerialException
 from .utils import send_command, MotionType, trans_to_4bit_float
 from .can_id_and_communication_type import analyze_can_id_and_communication_type, generate_can_id_and_communication_type, analyze_raw_data_0
@@ -9,12 +10,15 @@ from .can_id_and_communication_type import analyze_can_id_and_communication_type
 class Cybergear():
     def __init__(self, baud_rate=921600, port="auto", timeout=1):
         if port == "auto":
-            ports = list(serial.tools.list_ports.grep('CH340'))
-            if ports:
-                port = ports[0].device
+            if platform.system() == 'Linux':
+                port = '/dev/ttyUSB0'
             else:
-                logging.error("没有找到youcee USB-CAN设备")
-                raise
+                ports = list(serial.tools.list_ports.grep('CH340'))
+                if ports:
+                    port = ports[0].device
+                else:
+                    logging.error("没有找到youcee USB-CAN设备")
+                    raise
         self.current_motion_type = {}
         self.baud_rate = baud_rate
         self.port = port
@@ -75,6 +79,9 @@ class Cybergear():
         else:
             logging.error("请检查设备连接，未找到可用电机")
             raise
+
+    def get_motor_nums(self):
+        return len(self.current_motion_type)
 
     #  运控模式电机控制指令 （通信类型 1）
     def set_motion_control(self):
